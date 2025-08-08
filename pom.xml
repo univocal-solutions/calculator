@@ -43,14 +43,14 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:git://github.com/univocal/javafx-calculator.git</connection>
-        <developerConnection>scm:git:ssh://github.com:univocal/javafx-calculator.git</developerConnection>
-        <url>https://github.com/univocal/javafx-calculator/tree/main</url>
+        <connection>git@github.com:univocal-solutions/calculator.git</connection>
+        <developerConnection>git@github.com:univocal-solutions/calculator.git</developerConnection>
+        <url>https://github.com/univocal-solutions/calculator</url>
     </scm>
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/univocal/javafx-calculator/issues</url>
+        <url>https://github.com/univocal-solutions/calculator/issues</url>
     </issueManagement>
 
     <properties>
