@@ -153,23 +153,23 @@ public class CalculatorButtonPanel {
     }
 
     private void addNumberButton(String text, int col, int row, int colSpan, int rowSpan, Runnable action) {
-        Button button = createCleanButton(text, NUMBER_BG, NUMBER_TEXT, BUTTON_FONT_SIZE, action);
+        Button button = createCleanButton(text, currentNumberBg, currentNumberText, BUTTON_FONT_SIZE, action);
         buttonGrid.add(button, col, row, colSpan, rowSpan);
     }
 
     private void addOperatorButton(String text, int col, int row, Runnable action) {
-        Button button = createCleanButton(text, OPERATOR_BG, OPERATOR_TEXT, BUTTON_FONT_SIZE, action);
+        Button button = createCleanButton(text, currentOperatorBg, currentOperatorText, BUTTON_FONT_SIZE, action);
         button.setStyle(button.getStyle() + " -fx-font-weight: 500;");
         buttonGrid.add(button, col, row);
     }
 
     private void addFunctionButton(String text, int col, int row, Runnable action) {
-        Button button = createCleanButton(text, FUNCTION_BG, FUNCTION_TEXT, SMALL_BUTTON_FONT_SIZE, action);
+        Button button = createCleanButton(text, currentFunctionBg, currentFunctionText, SMALL_BUTTON_FONT_SIZE, action);
         buttonGrid.add(button, col, row);
     }
 
     private void addSpecialButton(String text, int col, int row, int colSpan, int rowSpan, Runnable action) {
-        Button button = createCleanButton(text, SPECIAL_BG, SPECIAL_TEXT, BUTTON_FONT_SIZE, action);
+        Button button = createCleanButton(text, currentSpecialBg, currentSpecialText, BUTTON_FONT_SIZE, action);
         button.setStyle(button.getStyle() + " -fx-font-weight: 500;");
         buttonGrid.add(button, col, row, colSpan, rowSpan);
     }
@@ -217,6 +217,119 @@ public class CalculatorButtonPanel {
                         "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 6, 0, 0, 1);",
                 bgColor, textColor, FONT_FAMILY, fontSize
         );
+    }
+
+    // Current theme-aware colors
+    private String currentNumberBg = "#ffffff";
+    private String currentNumberText = "#2c3e50";
+    private String currentOperatorBg = "#3498db";
+    private String currentOperatorText = "#ffffff";
+    private String currentFunctionBg = "#ecf0f1";
+    private String currentFunctionText = "#34495e";
+    private String currentSpecialBg = "#e74c3c";
+    private String currentSpecialText = "#ffffff";
+
+    /**
+     * Apply theme to all buttons.
+     */
+    public void applyTheme(org.univocal.models.CalculatorSettings settings) {
+        if (settings.isDarkTheme()) {
+            applyDarkTheme();
+        } else {
+            applyLightTheme();
+        }
+
+        // Refresh all button styles
+        refreshButtonStyles();
+    }
+
+    /**
+     * Apply light theme colors.
+     */
+    private void applyLightTheme() {
+        currentNumberBg = "#ffffff";
+        currentNumberText = "#2c3e50";
+        currentOperatorBg = "#3498db";
+        currentOperatorText = "#ffffff";
+        currentFunctionBg = "#ecf0f1";
+        currentFunctionText = "#34495e";
+        currentSpecialBg = "#e74c3c";
+        currentSpecialText = "#ffffff";
+    }
+
+    /**
+     * Apply dark theme colors.
+     */
+    private void applyDarkTheme() {
+        currentNumberBg = "#34495e";
+        currentNumberText = "#ecf0f1";
+        currentOperatorBg = "#2980b9";
+        currentOperatorText = "#ffffff";
+        currentFunctionBg = "#2c3e50";
+        currentFunctionText = "#bdc3c7";
+        currentSpecialBg = "#c0392b";
+        currentSpecialText = "#ffffff";
+    }
+
+    /**
+     * Refresh styles of all existing buttons.
+     */
+    private void refreshButtonStyles() {
+        buttonGrid.getChildren().forEach(node -> {
+            if (node instanceof Button) {
+                Button button = (Button) node;
+                String text = button.getText();
+
+                // Determine button type and apply appropriate style
+                if (isNumberButton(text)) {
+                    String style = createCleanButtonStyle(currentNumberBg, currentNumberText, BUTTON_FONT_SIZE);
+                    button.setStyle(style);
+                    setupCleanButtonEffects(button, style);
+                } else if (isOperatorButton(text)) {
+                    String style = createCleanButtonStyle(currentOperatorBg, currentOperatorText, BUTTON_FONT_SIZE);
+                    style += " -fx-font-weight: 500;";
+                    button.setStyle(style);
+                    setupCleanButtonEffects(button, style);
+                } else if (isFunctionButton(text)) {
+                    String style = createCleanButtonStyle(currentFunctionBg, currentFunctionText, SMALL_BUTTON_FONT_SIZE);
+                    button.setStyle(style);
+                    setupCleanButtonEffects(button, style);
+                } else if (isSpecialButton(text)) {
+                    String style = createCleanButtonStyle(currentSpecialBg, currentSpecialText, BUTTON_FONT_SIZE);
+                    style += " -fx-font-weight: 500;";
+                    button.setStyle(style);
+                    setupCleanButtonEffects(button, style);
+                }
+            }
+        });
+    }
+
+    /**
+     * Check if button is a number button.
+     */
+    private boolean isNumberButton(String text) {
+        return text.matches("[0-9]") || text.equals(".");
+    }
+
+    /**
+     * Check if button is an operator button.
+     */
+    private boolean isOperatorButton(String text) {
+        return text.matches("[+−×÷=]");
+    }
+
+    /**
+     * Check if button is a function button.
+     */
+    private boolean isFunctionButton(String text) {
+        return text.matches("√|x²|1/x|%|x!");
+    }
+
+    /**
+     * Check if button is a special button.
+     */
+    private boolean isSpecialButton(String text) {
+        return text.equals("C") || text.equals("⌫");
     }
 
     /**
