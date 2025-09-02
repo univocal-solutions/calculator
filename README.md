@@ -32,7 +32,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/univocal/javafx-calculator.git
+git clone https://github.com/univocal-solutions/calculator.git
 cd javafx-calculator
 
 # Run in development mode
@@ -173,8 +173,8 @@ This project is licensed under the **MIT License** - see the [LICENSE.txt](LICEN
 
 ## 📞 Support
 
-- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/univocal/javafx-calculator/issues)
-- 💬 **Questions**: [GitHub Discussions](https://github.com/univocal/javafx-calculator/discussions)
+- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/univocal-solutions/calculator/issues)
+- 💬 **Questions**: [GitHub Discussions](https://github.com/univocal-solutions/calculator/discussions)
 - 📧 **Email**: dev@univocal.org
 - 🌐 **Website**: [univocal.org](https://www.univocal.org)
 
@@ -204,6 +204,6 @@ This project is licensed under the **MIT License** - see the [LICENSE.txt](LICEN
 
 **Built with ❤️ by the Univocal Team**
 
-[Website](https://www.univocal.org) • [Issues](https://github.com/univocal/javafx-calculator/issues) • [Releases](https://github.com/univocal/javafx-calculator/releases)
+[Website](https://www.univocal.org) • [Issues](https://github.com/univocal-solutions/calculator/issues) • [Releases](https://github.com/univocal-solutions/calculator/releases)
 
 </div>
